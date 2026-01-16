@@ -11,7 +11,6 @@ void Trip::assignDriver(Driver* d) {
     this->driver = d;
     this->state = ASSIGNED;
 }
-
 void Trip::startTrip() {
     this->state = ONGOING;
 }
