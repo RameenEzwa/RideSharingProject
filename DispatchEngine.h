@@ -21,6 +21,9 @@ public:
     Driver* findBestDriver(Rider* r, City* city, int crossZoneCost);
     Trip* requestTrip(Rider* r, City* city, int crossZoneCost);
 
+    void cancelTrip(Trip* t);
+    int getTripCount();
+
     ~DispatchEngine();
 };
 

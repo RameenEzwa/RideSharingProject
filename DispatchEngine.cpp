@@ -1,6 +1,4 @@
 #include "DispatchEngine.h"
-#include <iostream>
-using namespace std;
 
 DispatchEngine::DispatchEngine() {
     drivers = new Driver*[100];
@@ -50,6 +48,17 @@ Trip* DispatchEngine::requestTrip(Rider* r, City* city, int crossZoneCost) {
     return t;
 }
 
+void DispatchEngine::cancelTrip(Trip* t) {
+    if (t != nullptr) {
+        t->cancelTrip();
+        t->getDriver()->setAvailable(true);
+    }
+}
+
+int DispatchEngine::getTripCount() {
+    return tripCount;
+}
+
 DispatchEngine::~DispatchEngine() {
     for (int i = 0; i < tripCount; i++) {
         delete trips[i];
@@ -58,3 +67,4 @@ DispatchEngine::~DispatchEngine() {
     delete[] trips;
     delete[] drivers;
 }
+
