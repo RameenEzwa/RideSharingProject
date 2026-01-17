@@ -12,20 +12,25 @@ private:
     Driver* driver;
     Rider* rider;
     TripState state;
+    int distance;
 
 public:
-    Trip(int id, Driver* d, Rider* r);
+    Trip(int id, Driver* d, Rider* r, int distance = 0);
 
-    bool assignDriver(Driver* d);
-    bool startTrip();
-    bool completeTrip();
-    bool cancelTrip();
-    Driver* getDriver();
-    Rider* getRider();
-
+    void assignDriver(Driver* d);
+    void startTrip();
+    void completeTrip();
+    void cancelTrip();
 
     TripState getState();
     int getId();
+    int getDistance();
+
+    Driver* getDriver();
+    Rider* getRider();
 };
 
 #endif
+
+
+

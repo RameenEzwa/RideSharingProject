@@ -1,47 +1,54 @@
 #include "Trip.h"
 
-Trip::Trip(int id, Driver* d, Rider* r) {
+Trip::Trip(int id, Driver* d, Rider* r, int distance) {
     this->id = id;
     this->driver = d;
     this->rider = r;
     this->state = REQUESTED;
+    this->distance = distance;
 }
 
-bool Trip::assignDriver(Driver* d) {
+void Trip::assignDriver(Driver* d) {
     if (state == REQUESTED) {
         this->driver = d;
         this->state = ASSIGNED;
-        return true;
     }
-    return false;
 }
 
-bool Trip::startTrip() {
+void Trip::startTrip() {
     if (state == ASSIGNED) {
         this->state = ONGOING;
-        return true;
     }
-    return false;
 }
 
-bool Trip::completeTrip() {
+void Trip::completeTrip() {
     if (state == ONGOING) {
         this->state = COMPLETED;
-        return true;
     }
-    return false;
 }
 
-bool Trip::cancelTrip() {
-    if (state == REQUESTED || state == ASSIGNED) {
+void Trip::cancelTrip() {
+    if (state == REQUESTED || state == ASSIGNED || state == ONGOING) {
         this->state = CANCELLED;
-        return true;
     }
-    return false;
 }
+
+TripState Trip::getState() {
+    return state;
+}
+
+int Trip::getId() {
+    return id;
+}
+
+int Trip::getDistance() {
+    return distance;
+}
+
 Driver* Trip::getDriver() {
     return driver;
 }
+
 Rider* Trip::getRider() {
     return rider;
 }
@@ -54,3 +61,17 @@ TripState Trip::getState() {
 int Trip::getId() {
     return id;
 }
+
+int Trip::getDistance() {
+    return distance;
+}
+
+Driver* Trip::getDriver() {
+    return driver;
+}
+
+Rider* Trip::getRider() {
+    return rider;
+}
+
+
