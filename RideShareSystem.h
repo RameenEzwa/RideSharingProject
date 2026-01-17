@@ -14,12 +14,10 @@ public:
     RideShareSystem();
 
     void addDriver(Driver* d);
-    Trip* requestRide(Rider* r, City* city, int crossZoneCost);
-    void cancelLastTrip();
+    void requestRide(Rider* r, City* city, int crossZoneCost);
 
-    int getCompletedTrips();
-    int getCancelledTrips();
-    double getAverageDistance();
+    void cancelLastTrip();
+    void rollbackKTrips(int k);
 };
 
 #endif
