@@ -9,13 +9,19 @@ class DispatchEngine {
 private:
     Driver** drivers;
     int driverCount;
+
     Trip** trips;
     int tripCount;
 
 public:
     DispatchEngine();
+
     void addDriver(Driver* d);
+
+    Driver* findAvailableDriver();
+
     Trip* requestTrip(Rider* r);
+
     ~DispatchEngine();
 };
 
