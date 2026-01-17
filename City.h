@@ -2,7 +2,6 @@
 #define CITY_H
 
 class City {
-private:
     int locations;
     int **roads;
     int *zoneOfLocation;
