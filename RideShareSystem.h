@@ -3,7 +3,7 @@
 
 #include "DispatchEngine.h"
 #include "RollbackManager.h"
-#include "Rider.h"   // ✅ REQUIRED
+#include "City.h"
 
 class RideShareSystem {
 private:
@@ -12,9 +12,11 @@ private:
 
 public:
     RideShareSystem();
-    void requestRide(Rider* r);
-    void addDriver(Driver* d);
 
+    void addDriver(Driver* d);
+    void requestRide(Rider* r, City* city, int crossZoneCost);
+    void cancelLastTrip();
 };
 
 #endif
+
