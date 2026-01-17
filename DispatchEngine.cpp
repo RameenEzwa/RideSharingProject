@@ -16,17 +16,27 @@ void DispatchEngine::addDriver(Driver* d) {
     }
 }
 
-Driver* DispatchEngine::findAvailableDriver() {
+Driver* DispatchEngine::findBestDriver(Rider* r, City* city, int crossZoneCost) {
+    Driver* best = nullptr;
+    int bestCost = 1e9;
+
     for (int i = 0; i < driverCount; i++) {
-        if (drivers[i]->isAvailable()) {
-            return drivers[i];
+        if (!drivers[i]->isAvailable()) continue;
+
+        int driverLoc = drivers[i]->getLocation();
+        int cost = city->shortestPathWithZoneCost(driverLoc, r->getPickup(), crossZoneCost);
+
+        if (cost < bestCost) {
+            bestCost = cost;
+            best = drivers[i];
         }
     }
-    return nullptr;
+
+    return best;
 }
 
-Trip* DispatchEngine::requestTrip(Rider* r) {
-    Driver* d = findAvailableDriver();
+Trip* DispatchEngine::requestTrip(Rider* r, City* city, int crossZoneCost) {
+    Driver* d = findBestDriver(r, city, crossZoneCost);
 
     if (d == nullptr) {
         return nullptr;

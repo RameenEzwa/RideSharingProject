@@ -4,23 +4,22 @@
 #include "Driver.h"
 #include "Rider.h"
 #include "Trip.h"
+#include "City.h"
 
 class DispatchEngine {
 private:
-    Driver** drivers;
+    Driver **drivers;
     int driverCount;
 
-    Trip** trips;
+    Trip **trips;
     int tripCount;
 
 public:
     DispatchEngine();
+    void addDriver(Driver *d);
 
-    void addDriver(Driver* d);
-
-    Driver* findAvailableDriver();
-
-    Trip* requestTrip(Rider* r);
+    Driver* findBestDriver(Rider* r, City* city, int crossZoneCost);
+    Trip* requestTrip(Rider* r, City* city, int crossZoneCost);
 
     ~DispatchEngine();
 };
