@@ -27,6 +27,9 @@ public:
     void completeTrip();
     void cancelLastTrip();
     void rollbackKTrips(int k);
+    TripState getLastTripState();
+    int getCompletedTrips();
+
 
     void printAnalytics();
 };

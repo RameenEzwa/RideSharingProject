@@ -22,6 +22,13 @@ int main() {
     city.setZone(3, 1);
     city.setZone(4, 1);
     city.setZone(5, 1);
+    cout << "Test 1 (Graph OK): City created with roads and zones." << endl;
+
+    int dist = city.shortestPath(0, 3);
+    cout << "Test 2 (Shortest Path 0->3): " << dist << " (Expected 18)" << endl;
+
+    int distZone = city.shortestPathWithZoneCost(0, 3, 10);
+    cout << "Test 3 (Zone Cost 0->3): " << distZone << endl;
 
     RideShareSystem system;
 
@@ -30,15 +37,26 @@ int main() {
 
     system.addDriver(&d1);
     system.addDriver(&d2);
+    cout << "Test 4 (Drivers added): " << d1.isAvailable() << " " << d2.isAvailable() << endl;
 
     Rider r1(1, 2, 5);
-
     system.requestRide(&r1, &city, 10);
-    cout << "Ride requested successfully" << endl;
+    cout << "Test 5 (Ride requested): Driver d1 available? " << d1.isAvailable() << endl;
+
+    system.startLastTrip();
+    cout << "Test 6 (Trip started): " << (system.getLastTripState() == ONGOING) << endl;
 
     system.completeTrip();
-    cout << "Trip completed" << endl;
+    cout << "Test 7 (Trip completed): " << system.getCompletedTrips() << endl;
 
+    system.requestRide(&r1, &city, 10);
+    system.cancelLastTrip();
+    cout << "Test 8 (Cancel trip): Driver available? " << d1.isAvailable() << endl;
+
+    system.requestRide(&r1, &city, 10);
+    system.rollbackKTrips(1);
+    cout << "Test 9 (Rollback): Driver available? " << d1.isAvailable() << endl;
+    
     system.printAnalytics();
 
     cout << "City Map:" << endl;
@@ -46,5 +64,6 @@ int main() {
 
     return 0;
 }
+
 
 

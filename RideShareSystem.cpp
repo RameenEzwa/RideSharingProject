@@ -47,6 +47,15 @@ void RideShareSystem::cancelLastTrip() {
 void RideShareSystem::rollbackKTrips(int k) {
     rollback.rollbackK(k);
 }
+TripState RideShareSystem::getLastTripState() {
+    Trip* last = rollback.getLastTrip();
+    if (last == nullptr) return CANCELLED; // default if none
+    return last->getState();
+}
+
+int RideShareSystem::getCompletedTrips() {
+    return completedTrips;
+}
 
 void RideShareSystem::printAnalytics() {
     if (completedTrips == 0) {
