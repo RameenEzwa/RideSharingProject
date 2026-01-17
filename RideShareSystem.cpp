@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 #include "RideShareSystem.h"
-
 RideShareSystem::RideShareSystem() {
     totalDistance = 0;
     completedTrips = 0;
