@@ -13,13 +13,15 @@ public:
     RollbackManager(int capacity = 100);
 
     void addTrip(Trip* t);
-
+    Trip* getLastTrip();
     void rollbackLast();
-
     void rollbackK(int k);
 
     ~RollbackManager();
 };
 
 #endif
+
+
+
 

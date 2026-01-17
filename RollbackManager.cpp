@@ -12,18 +12,20 @@ void RollbackManager::addTrip(Trip* t) {
     }
 }
 
+Trip* RollbackManager::getLastTrip() {
+    if (count == 0) return nullptr;
+    return history[count - 1];
+}
+
 void RollbackManager::rollbackLast() {
     if (count > 0) {
         Trip* last = history[--count];
 
-        if (last->getState() != CANCELLED) {
-
-            if (last->getDriver() != nullptr) {
-                last->getDriver()->setAvailable(true);
-            }
-
-            last->cancelTrip();
+        if (last->getDriver() != nullptr) {
+            last->getDriver()->setAvailable(true);
         }
+
+        last->cancelTrip();
     }
 }
 
@@ -36,5 +38,7 @@ void RollbackManager::rollbackK(int k) {
 RollbackManager::~RollbackManager() {
     delete[] history;
 }
+
+
 
 

@@ -34,11 +34,17 @@ int main() {
     Rider r1(1, 2, 5);
 
     system.requestRide(&r1, &city, 10);
-
     cout << "Ride requested successfully" << endl;
+
+    system.completeTrip();
+    cout << "Trip completed" << endl;
+
+    system.printAnalytics();
 
     cout << "City Map:" << endl;
     city.display();
 
     return 0;
 }
+
+
