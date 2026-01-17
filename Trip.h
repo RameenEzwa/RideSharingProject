@@ -15,10 +15,12 @@ private:
 
 public:
     Trip(int id, Driver* d, Rider* r);
-    void assignDriver(Driver* d);
-    void startTrip();
-    void completeTrip();
-    void cancelTrip();
+
+    bool assignDriver(Driver* d);
+    bool startTrip();
+    bool completeTrip();
+    bool cancelTrip();
+
     TripState getState();
     int getId();
 };
