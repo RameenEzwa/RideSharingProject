@@ -7,11 +7,17 @@ class RollbackManager {
 private:
     Trip** history;
     int count;
+    int capacity;
 
 public:
-    RollbackManager();
+    RollbackManager(int capacity = 100);
+
     void addTrip(Trip* t);
+
     void rollbackLast();
+
+    void rollbackK(int k);
+
     ~RollbackManager();
 };
 
