@@ -20,6 +20,8 @@ public:
     bool startTrip();
     bool completeTrip();
     bool cancelTrip();
+    Driver* getDriver();
+
 
     TripState getState();
     int getId();

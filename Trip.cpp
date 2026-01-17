@@ -7,7 +7,6 @@ Trip::Trip(int id, Driver* d, Rider* r) {
     this->state = REQUESTED;
 }
 
-// Valid transition: REQUESTED -> ASSIGNED
 bool Trip::assignDriver(Driver* d) {
     if (state == REQUESTED) {
         this->driver = d;
@@ -17,7 +16,6 @@ bool Trip::assignDriver(Driver* d) {
     return false;
 }
 
-// Valid transition: ASSIGNED -> ONGOING
 bool Trip::startTrip() {
     if (state == ASSIGNED) {
         this->state = ONGOING;
@@ -26,7 +24,6 @@ bool Trip::startTrip() {
     return false;
 }
 
-// Valid transition: ONGOING -> COMPLETED
 bool Trip::completeTrip() {
     if (state == ONGOING) {
         this->state = COMPLETED;
@@ -35,7 +32,6 @@ bool Trip::completeTrip() {
     return false;
 }
 
-// Valid transition: REQUESTED or ASSIGNED -> CANCELLED
 bool Trip::cancelTrip() {
     if (state == REQUESTED || state == ASSIGNED) {
         this->state = CANCELLED;
@@ -43,6 +39,10 @@ bool Trip::cancelTrip() {
     }
     return false;
 }
+Driver* Trip::getDriver() {
+    return driver;
+}
+
 
 TripState Trip::getState() {
     return state;
