@@ -42,6 +42,9 @@ bool Trip::cancelTrip() {
 Driver* Trip::getDriver() {
     return driver;
 }
+Rider* Trip::getRider() {
+    return rider;
+}
 
 
 TripState Trip::getState() {

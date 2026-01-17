@@ -21,6 +21,7 @@ public:
     bool completeTrip();
     bool cancelTrip();
     Driver* getDriver();
+    Rider* getRider();
 
 
     TripState getState();
