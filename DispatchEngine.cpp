@@ -42,11 +42,14 @@ Trip* DispatchEngine::requestTrip(Rider* r, City* city, int crossZoneCost) {
 
     d->setAvailable(false);
 
-    Trip* t = new Trip(tripCount + 1, d, r);
-    trips[tripCount++] = t;
+    int dist = calculateTripDistance(r, city);
 
+    Trip* t = new Trip(tripCount + 1, d, r, dist);
+
+    trips[tripCount++] = t;
     return t;
 }
+
 
 void DispatchEngine::cancelTrip(Trip* t) {
     if (t != nullptr) {
@@ -58,6 +61,10 @@ void DispatchEngine::cancelTrip(Trip* t) {
 int DispatchEngine::getTripCount() {
     return tripCount;
 }
+int DispatchEngine::calculateTripDistance(Rider* r, City* city) {
+    return city->shortestPathWithZoneCost(r->getPickup(), r->getDropoff(), 0);
+}
+
 
 DispatchEngine::~DispatchEngine() {
     for (int i = 0; i < tripCount; i++) {

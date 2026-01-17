@@ -23,6 +23,8 @@ public:
 
     void cancelTrip(Trip* t);
     int getTripCount();
+    int calculateTripDistance(Rider* r, City* city);
+
 
     ~DispatchEngine();
 };
